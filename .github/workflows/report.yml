@@ -1,0 +1,21 @@
+name: "createReport"
+
+on:
+  schedule:
+    - cron: '0 0 2 * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+    - uses: actions/checkout@v4
+    - name: Create Report
+      run: sh ./report.sh
+    - name: setting git
+      run: |
+        git config --local user.email ${{ secrets.EMAIL }}
+        git config --local user.name "KamekureMaisuke"
+        git add .
+        git commit -m "create report $(date '+%Y%m%d')"
+        git push origin main
