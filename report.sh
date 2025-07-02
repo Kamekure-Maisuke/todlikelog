@@ -6,7 +6,7 @@ last=$(echo $now "-1" | bc)
 
 target=$(find data -type f | grep "$last")
 
-function showReport(){
+showReport(){
   echo "$now"のレポート
   echo ""
 
