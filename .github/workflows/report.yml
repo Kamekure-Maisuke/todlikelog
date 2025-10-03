@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-    - uses: actions/checkout@v5
+    - uses: actions/checkout@v4
     - name: Create Report
       run: sh ./report.sh
     - name: setting git
@@ -20,3 +20,4 @@ jobs:
         git add .
         git commit -m "create report $(date '+%Y%m%d')"
         git push origin main
+
