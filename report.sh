@@ -1,10 +1,13 @@
 #!/bin/sh
 set -eu
 
-now=$(date '+%Y%m')
-last=$(echo $now "-1" | bc)
+uname | grep -q "Darwin" && {
+  now=$(date -v-1m '+%Y%m')
+} || {
+  now=$(date -d '1 month ago' '+%Y%m')
+}
 
-target=$(find data -type f | grep "$last")
+target=$(find data -type f | grep "$now")
 
 showReport(){
   echo "$now"のレポート
@@ -21,4 +24,4 @@ showReport(){
   '
 }
 
-showReport > report/"$last"
+showReport > report/"$now"
